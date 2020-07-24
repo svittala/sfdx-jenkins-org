@@ -10,10 +10,7 @@ node {
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://test.salesforce.com"
 
 	def toolbelt = tool 'toolbelt'
-
-// -- helps with the mac keychain issue
-	rc = command "export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true"
-    println rc    
+   
     // -------------------------------------------------------------------------
     // Check out code from source control.
     // -------------------------------------------------------------------------
@@ -30,7 +27,7 @@ node {
 	println SF_CONSUMER_KEY
 	println SF_INSTANCE_URL
 	// remove environment
- 	//withEnv(["HOME=${env.WORKSPACE}"]) {	
+ 	withEnv(["HOME=${env.WORKSPACE}"]) {	
 	    withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 		// -------------------------------------------------------------------------
 		// Authenticate to Salesforce using the server key.
@@ -67,7 +64,7 @@ node {
 		//    }
 		//}
 	    }
-	//}
+	}
 }
 
 def command(script) {
