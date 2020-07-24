@@ -26,6 +26,8 @@ node {
     // Run all the enclosed stages with access to the Salesforce
     // JWT key credentials.
     // -------------------------------------------------------------------------
+	println SF_CONSUMER_KEY
+	println SF_INSTANCE_URL
 
  	withEnv(["HOME=${env.WORKSPACE}"]) {	
 	
@@ -41,7 +43,7 @@ node {
 		    }
 		}
 
-
+		println 'auth success'
 		// -------------------------------------------------------------------------
 		// Deploy metadata and execute unit tests.
 		// -------------------------------------------------------------------------
