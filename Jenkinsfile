@@ -28,8 +28,6 @@ node {
 	println SF_INSTANCE_URL
 	// remove environment
  	withEnv(["HOME=${env.WORKSPACE}"]) {	
-		withCredentials([string(credentialsId: 'consumer_key_devhub', variable: 'consumer_key')]) { //set SECRET with the credential content
-        echo "My consumer key  '${consumer_key}'"
 	    withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 		// -------------------------------------------------------------------------
 		// Authenticate to Salesforce using the server key.
@@ -38,10 +36,9 @@ node {
 		println server_key_file
 		// testing the consumer key approach
 
-		echo "inside another withCredential : My consumer key  '${consumer_key}'"
 		stage('Authorize to Salesforce') {
 		//	rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile  /Users/svittala/sshkeys/server.key --username ${SF_USERNAME} --setalias UAT"
-            rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${consumer_key} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias UAT"
+            rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias UAT"
 		    if (rc != 0) {
 			error 'Salesforce org authorization failed.'
 		    }
@@ -70,7 +67,7 @@ node {
 		//        error 'Salesforce deploy failed.'
 		//    }
 		//}
-	    }
+	    
 	}
 	}
 }
