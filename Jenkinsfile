@@ -9,7 +9,6 @@ node {
     def TEST_LEVEL='RunLocalTests'
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://test.salesforce.com"
 
-    export HOME=$WORKSPACE
 	// -- helps with the mac keychain issue
 	export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
     def toolbelt = tool 'toolbelt'
