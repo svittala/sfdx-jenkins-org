@@ -29,8 +29,8 @@ node {
     // -------------------------------------------------------------------------
 	println SF_CONSUMER_KEY
 	println SF_INSTANCE_URL
-
- 	withEnv(["HOME=${env.WORKSPACE}"]) {	
+	// remove environment
+ 	//withEnv(["HOME=${env.WORKSPACE}"]) {	
 	    println 'what is home'
 		println HOME
 	    withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
@@ -69,7 +69,7 @@ node {
 		//    }
 		//}
 	    }
-	}
+	//}
 }
 
 def command(script) {
