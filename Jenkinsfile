@@ -31,8 +31,6 @@ node {
 	println SF_INSTANCE_URL
 	// remove environment
  	//withEnv(["HOME=${env.WORKSPACE}"]) {	
-	    println 'what is home'
-		println HOME
 	    withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 		// -------------------------------------------------------------------------
 		// Authenticate to Salesforce using the server key.
